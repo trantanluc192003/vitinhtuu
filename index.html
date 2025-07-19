@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vũ trụ 3D</title>
   <style>
@@ -10,9 +10,12 @@
   </style>
 </head>
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/controls/OrbitControls.min.js"></script>
-  <script>
+
+  <!-- THREE.js -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.module.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.148.0/examples/jsm/controls/OrbitControls.js';
+
     // Scene, camera, renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -23,16 +26,16 @@
     document.body.appendChild(renderer.domElement);
 
     // OrbitControls
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
 
-    // Tạo quả cầu trung tâm phát sáng
+    // Quả cầu trung tâm phát sáng
     const sphereGeometry = new THREE.SphereGeometry(3, 32, 32);
     const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xffcc88 });
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
     scene.add(sphere);
 
-    // Tạo các hạt xung quanh
+    // Các hạt xung quanh
     const particleCount = 5000;
     const particlesGeometry = new THREE.BufferGeometry();
     const positions = [];
@@ -74,5 +77,6 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
   </script>
+
 </body>
 </html>
